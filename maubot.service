@@ -1,0 +1,42 @@
+[Unit]
+Description=Matrix-Facebook bridge
+After=synapse.service
+
+[Service]
+Restart=always
+
+ExecStart=/usr/bin/python3 -m maubot -c /etc/maubot/config.yaml
+
+StateDirectory=maubot
+ConfigurationDirectory=maubot
+
+TemporaryFileSystem=/
+BindReadOnlyPaths=/usr
+
+DynamicUser=true
+
+PrivateTmp=yes
+PrivateDevices=true
+PrivateUsers=true
+
+DevicePolicy=closed
+
+ProtectSystem=strict
+ProtectHome=yes
+ProtectControlGroups=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+ProtectClock=true
+ProtectKernelLogs=yes
+
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+
+NoNewPrivileges=yes
+LockPersonality=yes
+
+SystemCallFilter=~@mount
+[Install]
+WantedBy=multi-user.target

@@ -10,6 +10,9 @@ Summary:        A plugin-based Matrix bot system
 License:        None
 URL:            https://github.com/maubot/maubot
 Source0:        %{pypi_source}
+Source1:        maubot.service
+
+Patch0:         config.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -51,8 +54,22 @@ mkdir -p %{buildroot}%{_datadir}/%{pypi_name}
 mv %{buildroot}/usr/alembic.ini %{buildroot}%{_datadir}/%{pypi_name}/
 mv %{buildroot}/usr/alembic %{buildroot}%{_datadir}/%{pypi_name}/
 
+mkdir -p %{buildroot}%{_datadir}/%{pypi_name}/plugin
+mkdir -p %{buildroot}%{_datadir}/%{pypi_name}/crypto
+
 mkdir -p %{buildroot}%{_sysconfdir}/%{pypi_name}
 mv %{buildroot}/usr/example-config.yaml %{buildroot}%{_sysconfdir}/%{pypi_name}/config.yaml
+
+install -p -D -T -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/maubot.service
+
+%post
+%systemd_post mautrix-facebook.service
+
+%preun
+%systemd_preun mautrix-facebook.service
+
+%postun
+%systemd_postun_with_restart mautrix-facebook.service
 
 %files -n python3-%{pypi_name}
 %license LICENSE
@@ -65,6 +82,8 @@ mv %{buildroot}/usr/example-config.yaml %{buildroot}%{_sysconfdir}/%{pypi_name}/
 %config(noreplace) %{_sysconfdir}/%{pypi_name}/config.yaml
 
 %{_bindir}/mbc
+
+%{_unitdir}/maubot.service
 
 
 %changelog

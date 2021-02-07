@@ -1,0 +1,34 @@
+--- example-config.yaml	2020-08-02 19:07:32.000000000 +0100
++++ example-config.yaml.new	2021-02-07 17:35:49.040000000 +0000
+@@ -15,20 +15,20 @@
+     # When using non-default postgres, postgres_uri is used to connect to postgres.
+     type: default
+     postgres_uri: postgres://username:password@hostname/dbname
+-    pickle_dir: ./crypto
++    pickle_dir: /var/lib/maubot/crypto
+ 
+ plugin_directories:
+     # The directory where uploaded new plugins should be stored.
+-    upload: ./plugins
++    upload: /var/lib/maubot/plugins
+     # The directories from which plugins should be loaded.
+     # Duplicate plugin IDs will be moved to the trash.
+     load:
+-    - ./plugins
++    - /var/lib/maubot/plugins
+     # The directory where old plugin versions and conflicting plugins should be moved.
+     # Set to "delete" to delete files immediately.
+-    trash: ./trash
++    trash: "delete"
+     # The directory where plugin databases should be stored.
+-    db: ./plugins
++    db: /var/lib/maubot/plugins
+ 
+ server:
+     # The IP and port to listen to.
+@@ -108,4 +108,4 @@
+             level: INFO
+     root:
+         level: DEBUG
+-        handlers: [file, console]
++        handlers: [console]

@@ -2,7 +2,7 @@
 %global pypi_name maubot
 %{?python_enable_dependency_generator}
 
-Name:           python-%{pypi_name}
+Name:           %{pypi_name}
 Version:        0.1.0
 Release:        1%{?dist}
 Summary:        A plugin-based Matrix bot system

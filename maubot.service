@@ -5,7 +5,7 @@ After=synapse.service
 [Service]
 Restart=always
 
-ExecStart=/usr/bin/python3 -m maubot -c /etc/maubot/config.yaml
+ExecStart=/usr/bin/python3 -m maubot --config /etc/maubot/config.yaml --base-config /usr/share/maubot/base-config.yaml
 
 WorkingDirectory=/var/lib/maubot
 StateDirectory=maubot

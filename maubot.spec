@@ -59,6 +59,7 @@ mkdir -p %{buildroot}%{_sharedstatedir}/%{pypi_name}/plugin
 mkdir -p %{buildroot}%{_sharedstatedir}/%{pypi_name}/crypto
 
 mkdir -p %{buildroot}%{_sysconfdir}/%{pypi_name}
+cp %{buildroot}/usr/example-config.yaml %{buildroot}%{_datadir}/%{pypi_name}/base-config.yaml
 mv %{buildroot}/usr/example-config.yaml %{buildroot}%{_sysconfdir}/%{pypi_name}/config.yaml
 
 install -p -D -T -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/maubot.service

@@ -55,8 +55,8 @@ mkdir -p %{buildroot}%{_datadir}/%{pypi_name}
 mv %{buildroot}/usr/alembic.ini %{buildroot}%{_datadir}/%{pypi_name}/
 mv %{buildroot}/usr/alembic %{buildroot}%{_datadir}/%{pypi_name}/
 
-mkdir -p %{buildroot}%{_datadir}/%{pypi_name}/plugin
-mkdir -p %{buildroot}%{_datadir}/%{pypi_name}/crypto
+mkdir -p %{buildroot}%{_libdir}/%{pypi_name}/plugin
+mkdir -p %{buildroot}%{_libdir}/%{pypi_name}/crypto
 
 mkdir -p %{buildroot}%{_sysconfdir}/%{pypi_name}
 mv %{buildroot}/usr/example-config.yaml %{buildroot}%{_sysconfdir}/%{pypi_name}/config.yaml
@@ -81,6 +81,8 @@ install -p -D -T -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/maubot.service
 %{_datadir}/%{pypi_name}
 %dir %{_sysconfdir}/%{pypi_name}
 %config(noreplace) %{_sysconfdir}/%{pypi_name}/config.yaml
+
+%{_libdir}/%{pypi_name}
 
 %{_bindir}/mbc
 

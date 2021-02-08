@@ -24,6 +24,7 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  systemd-rpm-macros
+BuildRequires:  yarnpkg
 
 Requires:       systemd
 
@@ -48,6 +49,11 @@ rm -rf %{pypi_name}.egg-info
 %build
 %py3_build
 
+pushd maubot/management/frontend
+yarn
+yarn build
+popd
+
 %install
 %py3_install
 
@@ -63,6 +69,8 @@ cp %{buildroot}/usr/example-config.yaml %{buildroot}%{_datadir}/%{pypi_name}/bas
 mv %{buildroot}/usr/example-config.yaml %{buildroot}%{_sysconfdir}/%{pypi_name}/config.yaml
 
 install -p -D -T -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/maubot.service
+
+cp -r maubot/management/frontend/build %{buildroot}%{_datadir}/%{pypi_name}/static
 
 %post
 %systemd_post maubot.service

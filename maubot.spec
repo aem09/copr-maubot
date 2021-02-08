@@ -78,7 +78,7 @@ install -p -D -T -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/maubot.service
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
 
 %{_datadir}/%{pypi_name}
-%{_sysconfdir}/%{pypi_name}
+%dir %{_sysconfdir}/%{pypi_name}
 %config(noreplace) %{_sysconfdir}/%{pypi_name}/config.yaml
 
 %{_bindir}/mbc

@@ -7,6 +7,7 @@ Restart=always
 
 ExecStart=/usr/bin/python3 -m maubot -c /etc/maubot/config.yaml
 
+WorkingDirectory=/var/lib/maubot
 StateDirectory=maubot
 ConfigurationDirectory=maubot
 
@@ -20,6 +21,8 @@ PrivateDevices=true
 PrivateUsers=true
 
 DevicePolicy=closed
+ProcSubset=pid
+KeyringMode=private
 
 ProtectSystem=strict
 ProtectHome=yes
@@ -28,6 +31,8 @@ ProtectKernelModules=yes
 ProtectKernelTunables=yes
 ProtectClock=true
 ProtectKernelLogs=yes
+ProtectProc=invisible
+ProtectHostname=yes
 
 RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
 RestrictNamespaces=yes
@@ -36,6 +41,7 @@ RestrictSUIDSGID=yes
 
 NoNewPrivileges=yes
 LockPersonality=yes
+MemoryDenyWriteExecute=yes
 
 SystemCallFilter=~@mount
 [Install]

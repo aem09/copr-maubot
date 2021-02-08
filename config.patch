@@ -1,5 +1,14 @@
 --- example-config.yaml	2020-08-02 19:07:32.000000000 +0100
-+++ example-config.yaml.new	2021-02-07 17:35:49.040000000 +0000
++++ example-config.yaml.new	2021-02-08 13:51:25.050000000 +0000
+@@ -3,7 +3,7 @@
+ # Format examples:
+ #   SQLite:   sqlite:///filename.db
+ #   Postgres: postgres://username:password@hostname/dbname
+-database: sqlite:///maubot.db
++database: sqlite:////var/lib/maubot/maubot.db
+ 
+ # Database for encryption data.
+ crypto_database:
 @@ -15,20 +15,20 @@
      # When using non-default postgres, postgres_uri is used to connect to postgres.
      type: default
@@ -26,7 +35,20 @@
  
  server:
      # The IP and port to listen to.
-@@ -108,4 +108,4 @@
+@@ -90,12 +90,6 @@
+         normal:
+             format: "[%(asctime)s] [%(levelname)s@%(name)s] %(message)s"
+     handlers:
+-        file:
+-            class: logging.handlers.RotatingFileHandler
+-            formatter: normal
+-            filename: ./maubot.log
+-            maxBytes: 10485760
+-            backupCount: 10
+         console:
+             class: logging.StreamHandler
+             formatter: colored
+@@ -108,4 +102,4 @@
              level: INFO
      root:
          level: DEBUG

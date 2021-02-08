@@ -17,6 +17,7 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(setuptools)
+BuildRequires:  systemd-rpm-macros
 
 Requires:       systemd
 

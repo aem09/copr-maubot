@@ -1,15 +1,21 @@
 # Created by pyp2rpm-3.3.5
 %global pypi_name maubot
+%global forgeurl https://github.com/maubot/maubot
+%global commit f0a3fa354d3b0c1a8094d15c647390faab9c51b7
+
 %{?python_enable_dependency_generator}
+
+%forgemeta
 
 Name:           %{pypi_name}
 Version:        0.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A plugin-based Matrix bot system
 
 License:        None
-URL:            https://github.com/maubot/maubot
-Source0:        %{pypi_source}
+URL:            %{forgeurl}
+#Source0:        %{pypi_source}
+Source0:        %forgesource
 Source1:        maubot.service
 
 Patch0:         config.patch
@@ -34,7 +40,8 @@ A plugin-based [Matrix]() bot system written in Python.
 %{?python_extras_subpkg:%python_extras_subpkg -n %{name} -i %{python3_sitelib}/*.egg-info postgres}
 
 %prep
-%autosetup -n %{pypi_name}-%{version}
+%forgesetup
+#autosetup -n %{pypi_name}-%{version}
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 

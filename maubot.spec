@@ -9,7 +9,7 @@
 
 Name:           %{pypi_name}
 Version:        0.1.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A plugin-based Matrix bot system
 
 License:        None
@@ -30,7 +30,7 @@ Requires:       systemd
 #Manually include the end-to-end dependencies.
 Requires:       libolm-python3
 Requires:       python3-unpaddedbase64
-%py_provides    mautrix-facebook+e2be
+%py_provides    maubot+e2be
 Requires:       python3-crypto
 %global __requires_exclude ^.*pycryptodome.*$
 
@@ -64,13 +64,13 @@ mv %{buildroot}/usr/example-config.yaml %{buildroot}%{_sysconfdir}/%{pypi_name}/
 install -p -D -T -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/maubot.service
 
 %post
-%systemd_post mautrix-facebook.service
+%systemd_post maubot.service
 
 %preun
-%systemd_preun mautrix-facebook.service
+%systemd_preun maubot.service
 
 %postun
-%systemd_postun_with_restart mautrix-facebook.service
+%systemd_postun_with_restart maubot.service
 
 %files
 %license LICENSE

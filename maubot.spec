@@ -33,13 +33,6 @@ A plugin-based [Matrix]() bot system written in Python.
 
 %{?python_extras_subpkg:%python_extras_subpkg -n %{name} -i %{python3_sitelib}/*.egg-info postgres}
 
-%package -n     python3-%{pypi_name}
-Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{pypi_name}}
-
-%description -n python3-%{pypi_name}
-A plugin-based [Matrix]() bot system written in Python.
-
 %prep
 %autosetup -n %{pypi_name}-%{version}
 # Remove bundled egg-info
@@ -72,7 +65,7 @@ install -p -D -T -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/maubot.service
 %postun
 %systemd_postun_with_restart mautrix-facebook.service
 
-%files -n python3-%{pypi_name}
+%files
 %license LICENSE
 %doc README.md
 %{python3_sitelib}/%{pypi_name}
